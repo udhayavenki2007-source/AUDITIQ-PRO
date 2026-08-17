@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root { color-scheme: light; }
+  * { @apply border-slate-200; }
+  body { @apply min-h-screen bg-[#f5f7fb] text-slate-800 antialiased; font-family: "DM Sans", Arial, sans-serif; }
+  h1, h2, h3 { font-family: "Manrope", "DM Sans", sans-serif; }
+  button, input, textarea, select { font: inherit; }
+}
+
+@layer components {
+  .glass { @apply rounded-2xl border border-white/80 bg-white/90 p-5 shadow-[0_12px_32px_rgba(15,23,42,.07)] backdrop-blur; }
+  .glass-input { @apply rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10; }
+  .glass-button { @apply rounded-xl bg-navy px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#163b60] hover:shadow-md focus:outline-none focus:ring-4 focus:ring-blue-500/20 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50; }
+  .page-title { @apply text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl; }
+}
+
+@media print {
+  body { background: white; color: black; }
+  body > * { visibility: hidden; }
+  .print-report, .print-report * { visibility: visible; color: black !important; }
+  .print-report { position: absolute; inset: 0; width: 100%; max-width: none; border: 0; box-shadow: none; background: white !important; }
+  .print-report button { display: none; }
+}

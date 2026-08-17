@@ -1,0 +1,2 @@
+import { prisma } from "@/lib/prisma"; import { apiError, requireRole } from "@/lib/auth"; import { Role } from "@prisma/client";
+export async function GET(request: Request) { try { await requireRole(request, [Role.AUDITOR]); const submissions = await prisma.submission.findMany({ where: { status: "SUBMITTED", review: null }, include: { department: true, checklistItem: { include: { auditCycle: true } } }, orderBy: { submittedAt: "asc" } }); return Response.json(submissions); } catch (e) { return apiError(e); } }
